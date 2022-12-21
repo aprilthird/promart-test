@@ -93,7 +93,7 @@ namespace PromartTest.Job.Jobs.Services
                         var fromMailAddress = new MailAddress(_smtpOptions.Value.EmailAccount, _smtpOptions.Value.EmailAccount);
                         var toMailAddress = new MailAddress(_smtpOptions.Value.ReportAccount, _smtpOptions.Value.ReportAccount);
                         var mailMessage = new MailMessage(fromMailAddress, toMailAddress);
-                        mailMessage.Subject = "Reporte de Empleados";
+                        mailMessage.Subject = "Reporte Empleados - Examen Tecnico Oechsle";
                         mailMessage.Body = $"Fecha de Inicio: {startDate.ToShortDateString()}. Fecha de Fin: {endDate.ToShortDateString()}";
                         mailMessage.Attachments.Add(new Attachment(ms, "Reporte.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
 
