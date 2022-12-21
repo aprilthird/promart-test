@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
     api:
+        image: jrojas96/promart-test-api:latest
         build:
           context: .
           dockerfile: PromartTest.Api/Dockerfile
@@ -15,6 +16,7 @@ services:
         depends_on:
           - db
     job:
+      image: jrojas96/promart-test-job:latest
       build:
         context: .
         dockerfile: PromartTest.Job/Dockerfile
@@ -27,11 +29,12 @@ services:
       depends_on:
         - db
     db:
-        build: ./PromartTest.Db
-        ports:
-          - "1434:1433"
-        networks:
-          - localenv
+      image: jrojas96/promart-test-db:latest      
+      build: ./PromartTest.Db
+      ports:
+        - "1434:1433"
+      networks:
+        - localenv
 
 networks:
     localenv:
