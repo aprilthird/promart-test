@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+    api:
+        build:
+          context: .
+          dockerfile: PromartTest.Api/Dockerfile
+        ports:
+          - "9080:80"
+          - "9081:443"
+        environment:
+          ASPNETCORE_ENVIRONMENT: Development
+        networks:
+          - localenv
+        depends_on:
+          - db
+    job:
+      build:
+        context: .
+        dockerfile: PromartTest.Job/Dockerfile
+      ports:
+        - "9082:80"
+      environment:
+        ASPNETCORE_ENVIRONMENT: Development
+      networks:
+        - localenv
+      depends_on:
+        - db
+    db:
+        build: ./PromartTest.Db
+        ports:
+          - "1434:1433"
+        networks:
+          - localenv
+
+networks:
+    localenv:
+        driver: bridge  
